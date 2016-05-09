@@ -27,57 +27,36 @@ Each type of content has an id, lowercase letters delimited by dots:
 
 ### Static Repository Access
 - Found at `{base url}/` index page
-- `url` key defines `{static url}`.
 
-Example:
 ```json
 {
-  "access": [
-    {
-      "version": "static",
-      "url": "static"
-    }
-  ]
+  "repository_type": "static",
+  "version": 1
 }
 ```
 
 ### Type Listing
-- Found at `{base url}/{static url}/content_types.json`
-- Maps each content type available on this repository to a url.
-- `url` key defines `{content type url}` per content-type.
+- Found at `{base url}/static/content_types.txt`
+- Lists content types available on this repository.
 
 Example:
-```json
-{
-  "content_types": [
-    {
-      "id": "stencyl.ext.engine",
-      "url": "engine-extensions"
-    },
-    {
-      "id": "stencyl.ext.toolset",
-      "url": "toolset-extensions"
-    }
-  ]
-}
+```
+stencyl.ext.engine
+stencyl.ext.toolset
 ```
 
 ### Resource Listing
-- Found at `{base url}/{static url}/{content type url}/list.json`
+- Found at `{base url}/static/{content type id}/list.txt`
 - Lists the unique id of each available resource of this type.
 
 Example:
-```json
-{
-  "list": [
-    "com.polydes.datastruct",
-    "com.polydes.dialog"
-  ]
-}
+```
+com.polydes.datastruct
+com.polydes.dialog
 ```
 
 ### Resource
-- A folder, found at `{base url}/{static url}/{content type url}/{resource id}/`
+- A folder, found at `{base url}/static/{content type id}/{resource id}/`
 - Has `info.txt`, example below
 - Has `icon.png`
 - Either has `{resource id}.zip` containing the resource, or
