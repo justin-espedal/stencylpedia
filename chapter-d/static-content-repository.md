@@ -6,57 +6,67 @@ Store assets on a remote server. This server can be shared with others to allow 
 
 Each type of content has an id, lowercase letters delimited by dots:
 
-| Content Type ID         | Description                    |
-|-------------------------|--------------------------------|
-| stencyl.ext.engine      | Engine Extension               |
-| stencyl.ext.toolset     | Toolset Extension              |
-| stencyl.lib.actortype   | Actor Type                     |
-| stencyl.lib.background  | Background                     |
-| stencyl.lib.font        | Font                           |
-| stencyl.lib.scene       | Scene                          |
-| stencyl.lib.sound       | Sound                          |
-| stencyl.lib.tileset     | Tileset                        |
-| stencyl.lib.code        | Behavior or Code               |
-| stencyl.game            | Game                           |
-| stencyl.kit             | Kit                            |
-| file.png                | PNG Image                      |
-| file.txt                | Text File                      |
-| com.polydes.dialog.font | Custom Extension-Specific Type |
+| Content Type ID         | Description                      |
+|-------------------------|----------------------------------|
+| stencyl.ext.engine      | Engine Extension                 |
+| stencyl.ext.toolset     | Toolset Extension                |
+| stencyl.lib.actortype   | Actor Type                       |
+| stencyl.lib.background  | Background                       |
+| stencyl.lib.font        | Font                             |
+| stencyl.lib.scene       | Scene                            |
+| stencyl.lib.shader      | Shader (just glsl or glslx file) |
+| stencyl.lib.sound       | Sound                            |
+| stencyl.lib.tileset     | Tileset                          |
+| stencyl.lib.code        | Behavior or Code                 |
+| stencyl.game            | Game                             |
+| stencyl.kit             | Kit                              |
+| file.png                | PNG Image                        |
+| file.txt                | Text File                        |
+| com.polydes.dialog.font | Custom Extension-Specific Type   |
 
 `{base url}`: the url provided to others to access the repository
 
 ### Static Repository Access
-- Found at `{base url}/` index page
+- Found at `{base url}/static.json`
+- Defines the type and version of this repository.
+- Lists content types available on this repository.
 
 ```json
 {
   "repository_type": "static",
-  "version": 1
+  "version": 1,
+  "content_types": [
+    {
+      "id": "stencyl.ext.engine",
+      "url": "engine-extensions"
+    },
+    {
+      "id": "stencyl.ext.toolset",
+      "url": "toolset-extensions"
+    },
+    {
+      "id": "stencyl.game",
+      "url": "games"
+    }
+  ]
 }
 ```
 
-### Type Listing
-- Found at `{base url}/static/content_types.txt`
-- Lists content types available on this repository.
-
-Example:
-```
-stencyl.ext.engine
-stencyl.ext.toolset
-```
-
 ### Resource Listing
-- Found at `{base url}/static/{content type id}/list.txt`
+- Found at `{type url}/list.json`
 - Lists the unique id of each available resource of this type.
+- `"resource id": "resource url"`
 
 Example:
 ```
-com.polydes.datastruct
-com.polydes.dialog
+{
+  "com.polydes.dialog": "dialog",
+  "com.polydes.datastruct": "datastruct"
+}
 ```
 
 ### Resource
-- A folder, found at `{base url}/static/{content type id}/{resource id}/`
+- A folder, found at `{type url}/{resource url}/`
 - Has `info.txt`, example below
 - Has `icon.png`
 - Either has `{resource id}.zip` containing the resource, or
@@ -75,8 +85,8 @@ Website=http://www.polydes.com/
 For toolset extensions: `Type=(java_library|game|normal)`
 
 For code:
-- `Code Mode=(Design|Code)`
-- `Code Type=(Behavior|Arbitrary)`
+- `Type=(actor_behavior|scene_behavior|arbitrary_code)`
+- `Representation=(haxe_code|design_blocks)`
 
 versions.json
 ```json
