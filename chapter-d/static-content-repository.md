@@ -55,18 +55,19 @@ Each type of content has an id, lowercase letters delimited by dots:
 ### Resource Listing
 - Found at `{type url}/list.json`
 - Lists the unique id of each available resource of this type.
-- `"resource id": "resource url"`
 
 Example:
 ```
 {
-  "com.polydes.dialog": "dialog",
-  "com.polydes.datastruct": "datastruct"
+  "list": [
+    "com.polydes.datastruct",
+    "com.polydes.dialog"
+  ]
 }
 ```
 
 ### Resource
-- A folder, found at `{type url}/{resource url}/`
+- A folder, found at `{type url}/{resource id}/`
 - Has `info.txt`, example below
 - Has `icon.png`
 - Has `versions.json` containing information for multiple versions, and a `{version number}.zip` for each (e.g. `1.2.0.zip`).
