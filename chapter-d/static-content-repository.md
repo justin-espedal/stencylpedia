@@ -69,8 +69,7 @@ Example:
 - A folder, found at `{type url}/{resource url}/`
 - Has `info.txt`, example below
 - Has `icon.png`
-- Either has `{resource id}.zip` containing the resource, or
-- `versions.json` containing information for multiple versions, and a `{version number}.zip` for each (e.g. `1.2.0.zip`).
+- Has `versions.json` containing information for multiple versions, and a `{version number}.zip` for each (e.g. `1.2.0.zip`).
 
 info.txt:
 ```
